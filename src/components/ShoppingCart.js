@@ -1,9 +1,15 @@
 import React from "react";
 import ShoppingCartCard from "./ShoppingCartCard";
 
-const ShoppingCart = ({ cart }) => {
+const ShoppingCart = ({ cart, removeFromCart }) => {
   const renderedList = cart.map(item => {
-    return <ShoppingCartCard key={item.id} item={item} />;
+    return (
+      <ShoppingCartCard
+        key={item.id}
+        item={item}
+        removeFromCart={removeFromCart}
+      />
+    );
   });
 
   return (

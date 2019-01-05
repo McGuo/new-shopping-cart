@@ -15,9 +15,9 @@ class ShoppingCartCard extends React.Component {
         <div className="right floated content">
           <button
             className="ui icon button red"
-            // onClick={() => {
-            //   this.handleClick();
-            // }}
+            onClick={() => {
+              this.props.removeFromCart(this.props.item);
+            }}
           >
             <i className="minus icon" />
           </button>
@@ -25,6 +25,7 @@ class ShoppingCartCard extends React.Component {
         <img
           className="ui avatar image left floated content"
           src={require(`../data/products/${this.props.item.sku}_1.jpg`)}
+          alt=""
         />
 
         <div className="content">

@@ -22,7 +22,9 @@ class App extends React.Component {
     }
   };
   removeFromCart = event => {
-    console.log("Successfully clicked removeFrom Cart for:", event.title);
+    this.setState({
+      cart: this.state.cart.filter(item => item.id !== event.id)
+    });
   };
 
   render() {
@@ -36,7 +38,10 @@ class App extends React.Component {
           <ShoppingList items={this.state.items} addtoCart={this.addtoCart} />
         </div>
         <div className="three wide column">
-          <ShoppingCart cart={this.state.cart} />
+          <ShoppingCart
+            cart={this.state.cart}
+            removeFromCart={this.removeFromCart}
+          />
         </div>
       </div>
     );
