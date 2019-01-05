@@ -6,7 +6,7 @@ const ShoppingCartCard = ({ item }) => {
     <div className="shopping-cart-card item">
       <div className="content">
         <div className="header">
-          {item.title}{" "}
+          {item.title}
           <button class="ui icon button red">
             <i class="minus icon" />
           </button>
