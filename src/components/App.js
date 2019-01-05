@@ -12,12 +12,17 @@ class App extends React.Component {
     cart: []
   };
 
-  addtoCart = item => {
-    this.setState({ cart: [...this.state.cart, item] });
+  addtoCart = event => {
+    if (this.state.cart.includes(event)) {
+      return;
+    } else {
+      this.setState({
+        cart: [...this.state.cart, event]
+      });
+    }
   };
-  removeFromCart = item => {
-    console.log("Successfully clicked!");
-    this.setState({ cart });
+  removeFromCart = event => {
+    console.log("Successfully clicked removeFrom Cart for:", event.title);
   };
 
   render() {

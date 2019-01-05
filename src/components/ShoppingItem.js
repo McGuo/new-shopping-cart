@@ -15,7 +15,7 @@ const ShoppingItem = ({ item, addtoCart }) => {
           <p>
             Description: {item.description}
             <br />
-            Available in: {item.availableSizes}
+            Available in: {item.availableSizes.join(", ")}
           </p>
         </div>
         <button className="ui primary button" onClick={() => addtoCart(item)}>
