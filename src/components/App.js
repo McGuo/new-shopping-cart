@@ -15,6 +15,10 @@ class App extends React.Component {
   addtoCart = item => {
     this.setState({ cart: [...this.state.cart, item] });
   };
+  removeFromCart = item => {
+    console.log("Successfully clicked!");
+    this.setState({ cart });
+  };
 
   render() {
     console.log(this.state.items);
