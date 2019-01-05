@@ -1,0 +1,9 @@
+.shopping-item {
+  text-align: center;
+}
+
+.shopping-item img {
+  max-height: 250px;
+  display: block;
+  margin: 0 auto;
+}
