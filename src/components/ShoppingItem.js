@@ -1,24 +1,26 @@
 import React from "react";
 import "./ShoppingItem.css";
 
-const ShoppingItem = ({ title, description, image, sizes }) => {
+const ShoppingItem = ({ item, addtoCart }) => {
   return (
     <div className="shopping-item item column">
       <img
         className="ui image"
-        src={require("../images/cn16334263.jpg")}
+        src={require(`../data/products/${item.sku}_1.jpg`)}
         alt="Clothing item to purchase"
       />
-      <div className="header">{title}</div>
+      <div className="header">{item.title}</div>
       <div className="content">
         <div className="description">
           <p>
-            Description: {description}
+            Description: {item.description}
             <br />
-            Available in: {sizes}
+            Available in: {item.availableSizes}
           </p>
         </div>
-        <button className="ui primary button">Add to Cart</button>
+        <button className="ui primary button" onClick={() => addtoCart(item)}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );

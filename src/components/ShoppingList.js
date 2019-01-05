@@ -1,16 +1,9 @@
 import React from "react";
 import ShoppingItem from "./ShoppingItem";
 
-const ShoppingList = ({ items }) => {
+const ShoppingList = ({ items, addtoCart }) => {
   const renderedList = items.map(item => {
-    return (
-      <ShoppingItem
-        key={item.id}
-        title={item.title}
-        description={item.description}
-        sizes={item.availableSizes}
-      />
-    );
+    return <ShoppingItem item={item} addtoCart={addtoCart} />;
   });
 
   return <div className="ui stackable three column grid">{renderedList}</div>;
