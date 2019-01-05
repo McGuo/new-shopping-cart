@@ -7,7 +7,7 @@ const ShoppingItem = ({ item, addtoCart }) => {
       <img
         className="ui image"
         src={require(`../data/products/${item.sku}_1.jpg`)}
-        alt="Clothing item to purchase"
+        alt={item.style}
       />
       <div className="header">{item.title}</div>
       <div className="content">

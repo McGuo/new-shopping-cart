@@ -14,13 +14,16 @@ class App extends React.Component {
 
   addtoCart = event => {
     if (this.state.cart.includes(event)) {
-      return;
+      const index = this.state.cart.indexOf(event);
+      var newCart = this.state.cart;
+      newCart[index].count = newCart[index].count + 1;
+      this.setState({ cart: newCart });
     } else {
-      this.setState({
-        cart: [...this.state.cart, event]
-      });
+      event.count = 1;
+      this.setState({ cart: [...this.state.cart, event] });
     }
   };
+
   removeFromCart = event => {
     this.setState({
       cart: this.state.cart.filter(item => item.id !== event.id)
@@ -28,7 +31,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.items);
     return (
       <div className="ui grid container">
         <div className="two wide column">

@@ -25,12 +25,12 @@ class ShoppingCartCard extends React.Component {
         <img
           className="ui avatar image left floated content"
           src={require(`../data/products/${this.props.item.sku}_1.jpg`)}
-          alt=""
+          alt={this.props.item.style}
         />
 
         <div className="content">
           <div className="header">{this.props.item.title}</div>
-          {/* <p>Quantity: {this.props.count}</p> */}
+          <p>Quantity: {this.props.item.count}</p>
         </div>
       </div>
     );
