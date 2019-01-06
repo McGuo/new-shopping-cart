@@ -2,13 +2,6 @@ import React from "react";
 import "./ShoppingCartCard.css";
 
 class ShoppingCartCard extends React.Component {
-  // state = {
-  //   count: 1
-  // };
-  // handleClick = () => {
-  //   this.setState({ count: this.state.count + 1 });
-  // };
-
   render() {
     return (
       <div className="shopping-cart-card item">

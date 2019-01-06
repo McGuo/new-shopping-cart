@@ -9,7 +9,8 @@ class App extends React.Component {
   state = {
     filter: null,
     items: data["products"],
-    cart: []
+    cart: [],
+    sizesSelected: []
   };
 
   addtoCart = event => {
@@ -30,21 +31,29 @@ class App extends React.Component {
     });
   };
 
+  updateSizesSelected = event => {
+    this.setState({
+      sizesSelected: event
+    });
+  };
+
   render() {
     return (
       <div className="ui grid container">
-        <div className="two wide column">
-          <Categories />
+        <div className="row">
+          <div className="fourteen wide column">
+            <Categories updateSizesSelected={this.updateSizesSelected} />
+          </div>
         </div>
-        <div className="eleven wide column">
+        <div className="row" />
+        <div className="fourteen wide column">
           <ShoppingList items={this.state.items} addtoCart={this.addtoCart} />
         </div>
-        <div className="three wide column">
-          <ShoppingCart
-            cart={this.state.cart}
-            removeFromCart={this.removeFromCart}
-          />
-        </div>
+
+        <ShoppingCart
+          cart={this.state.cart}
+          removeFromCart={this.removeFromCart}
+        />
       </div>
     );
   }
