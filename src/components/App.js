@@ -40,12 +40,12 @@ class App extends React.Component {
     return (
       <div className="ui grid container">
         <div className="row">
-          <div className="fourteen wide column">
+          <div className="twelve wide column">
             <Categories updateSizesSelected={this.updateSizesSelected} />
           </div>
         </div>
         <div className="row" />
-        <div className="fourteen wide column">
+        <div className="twelve wide column">
           <ShoppingList
             items={this.state.items}
             addtoCart={this.addtoCart}
