@@ -7,7 +7,6 @@ import ShoppingCart from "./ShoppingCart";
 
 class App extends React.Component {
   state = {
-    filter: null,
     items: data["products"],
     cart: [],
     sizesSelected: []
@@ -47,7 +46,11 @@ class App extends React.Component {
         </div>
         <div className="row" />
         <div className="fourteen wide column">
-          <ShoppingList items={this.state.items} addtoCart={this.addtoCart} />
+          <ShoppingList
+            items={this.state.items}
+            addtoCart={this.addtoCart}
+            sizesSelected={this.state.sizesSelected}
+          />
         </div>
 
         <ShoppingCart
