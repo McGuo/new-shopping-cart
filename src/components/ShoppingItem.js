@@ -2,6 +2,14 @@ import React from "react";
 import "./ShoppingItem.css";
 
 const ShoppingItem = ({ item, addtoCart }) => {
+  const renderedButtons = item.availableSizes.map(size => {
+    return (
+      <button className="ui primary button" key={size}>
+        {size}
+      </button>
+    );
+  });
+
   return (
     <div className="shopping-item item column">
       <img
@@ -21,6 +29,7 @@ const ShoppingItem = ({ item, addtoCart }) => {
         <button className="ui primary button" onClick={() => addtoCart(item)}>
           Add to Cart
         </button>
+        {/* {renderedButtons} */}
       </div>
     </div>
   );

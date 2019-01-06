@@ -16,7 +16,7 @@ class Categories extends React.Component {
   render() {
     return (
       <Dropdown
-        placeholder="Select Sizes"
+        placeholder="Select Sizes to Filter By"
         fluid
         multiple
         selection
