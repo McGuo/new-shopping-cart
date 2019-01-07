@@ -1,7 +1,7 @@
 import React from "react";
-import "./ShoppingCartCard.css";
+import "./ProductCard.css";
 
-class ShoppingCartCard extends React.Component {
+class ProductCard extends React.Component {
   render() {
     return (
       <div className="shopping-cart-card item">
@@ -17,7 +17,7 @@ class ShoppingCartCard extends React.Component {
         </div>
         <img
           className="ui avatar image left floated content"
-          src={require(`../data/products/${this.props.item.sku}_1.jpg`)}
+          src={require(`../static/data/products/${this.props.item.sku}_1.jpg`)}
           alt={this.props.item.style}
         />
 
@@ -30,4 +30,4 @@ class ShoppingCartCard extends React.Component {
   }
 }
 
-export default ShoppingCartCard;
+export default ProductCard;

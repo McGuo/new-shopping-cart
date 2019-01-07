@@ -1,8 +1,6 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
 
-const styles = { margin: "10px" };
-
 const options = [
   { key: "XS", text: "Extra Small", value: "XS" },
   { key: "S", text: "Small", value: "S" },
@@ -21,7 +19,7 @@ class Categories extends React.Component {
         multiple
         selection
         options={options}
-        style={styles}
+        style={{ margin: "10px" }}
         onChange={(e, { value }) => this.props.updateSizesSelected(value)}
       />
     );

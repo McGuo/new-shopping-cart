@@ -1,14 +1,10 @@
 import React from "react";
-import ShoppingCartCard from "./ShoppingCartCard";
+import ProductCard from "./ProductCard";
 
 const ShoppingCart = ({ cart, removeFromCart }) => {
   const renderedList = cart.map(item => {
     return (
-      <ShoppingCartCard
-        key={item.id}
-        item={item}
-        removeFromCart={removeFromCart}
-      />
+      <ProductCard key={item.id} item={item} removeFromCart={removeFromCart} />
     );
   });
 

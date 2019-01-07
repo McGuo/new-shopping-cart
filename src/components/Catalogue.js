@@ -1,18 +1,18 @@
 import React from "react";
-import ShoppingItem from "./ShoppingItem";
+import Product from "./Product";
 
-const ShoppingList = ({ items, addtoCart, sizesSelected }) => {
+const Catalogue = ({ products, addtoCart, sizesSelected }) => {
   var findOne = (haystack, arr) => {
     return arr.some(function(v) {
       return haystack.indexOf(v) >= 0;
     });
   };
 
-  const renderedList = items.map(item => {
+  const renderedList = products.map(item => {
     if (sizesSelected.length === 0) {
-      return <ShoppingItem item={item} addtoCart={addtoCart} key={item.id} />;
+      return <Product item={item} addtoCart={addtoCart} key={item.id} />;
     } else if (findOne(sizesSelected, item.availableSizes)) {
-      return <ShoppingItem item={item} addtoCart={addtoCart} key={item.id} />;
+      return <Product item={item} addtoCart={addtoCart} key={item.id} />;
     } else {
       return "";
     }
@@ -21,4 +21,4 @@ const ShoppingList = ({ items, addtoCart, sizesSelected }) => {
   return <div className="ui stackable three column grid">{renderedList}</div>;
 };
 
-export default ShoppingList;
+export default Catalogue;

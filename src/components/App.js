@@ -1,13 +1,12 @@
 import React from "react";
 
-import ShoppingList from "./ShoppingList";
+import Catalogue from "./Catalogue";
 import Categories from "./Categories";
-import data from "../data/products.json";
 import ShoppingCart from "./ShoppingCart";
 
 class App extends React.Component {
   state = {
-    items: data["products"],
+    products: [],
     cart: [],
     sizesSelected: []
   };
@@ -16,7 +15,7 @@ class App extends React.Component {
     if (this.state.cart.includes(event)) {
       const index = this.state.cart.indexOf(event);
       var newCart = this.state.cart;
-      newCart[index].count = newCart[index].count + 1;
+      newCart[index].count += 1;
       this.setState({ cart: newCart });
     } else {
       event.count = 1;
@@ -36,6 +35,16 @@ class App extends React.Component {
     });
   };
 
+  componentDidMount() {
+    import("../static/data/products.json")
+      .then(json => {
+        this.setState({ products: json.products });
+      })
+      .catch(error => {
+        alert(error);
+      });
+  }
+
   render() {
     return (
       <div className="ui grid container">
@@ -46,8 +55,8 @@ class App extends React.Component {
         </div>
         <div className="row" />
         <div className="twelve wide column">
-          <ShoppingList
-            items={this.state.items}
+          <Catalogue
+            products={this.state.products}
             addtoCart={this.addtoCart}
             sizesSelected={this.state.sizesSelected}
           />
