@@ -3,13 +3,14 @@ import "./ProductCard.css";
 
 class ProductCard extends React.Component {
   render() {
+    const { item } = this.props;
     return (
       <div className="shopping-cart-card item">
         <div className="right floated content">
           <button
             className="ui icon button red"
             onClick={() => {
-              this.props.removeFromCart(this.props.item);
+              this.props.removeFromCart(item);
             }}
           >
             <i className="minus icon" />
@@ -17,15 +18,17 @@ class ProductCard extends React.Component {
         </div>
         <img
           className="ui avatar image left floated content"
-          src={require(`../../static/data/products/${
-            this.props.item.sku
-          }_1.jpg`)}
-          alt={this.props.item.style}
+          src={require(`../../static/data/products/${item.sku}_1.jpg`)}
+          alt={item.style}
         />
 
         <div className="content">
-          <div className="header">{this.props.item.title}</div>
-          <p>Quantity: {this.props.item.count}</p>
+          <div className="header">{item.title}</div>
+          <p>
+            {item.count} x {item.currencyFormat}
+            {item.price} = {item.currencyFormat}
+            {item.currentCost}
+          </p>
         </div>
       </div>
     );

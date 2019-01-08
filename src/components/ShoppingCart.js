@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard/";
 
-const ShoppingCart = ({ cart, removeFromCart }) => {
+const ShoppingCart = ({ cart, cartCost, removeFromCart }) => {
   const renderedList = cart.map(item => {
     return (
       <ProductCard key={item.id} item={item} removeFromCart={removeFromCart} />
@@ -14,7 +14,17 @@ const ShoppingCart = ({ cart, removeFromCart }) => {
         <i className="shopping cart icon" />
         <div className="header"> Current Shopping Cart</div>
       </div>
-      <div className="ui middle aligned divided list">{renderedList}</div>
+      <div className="ui middle aligned divided list">
+        {renderedList}
+        <div className="item">
+          <div className="left floated content">
+            <h4>Total:</h4>
+          </div>
+          <div className="right floated content">
+            <p>${cartCost}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

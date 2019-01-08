@@ -8,25 +8,43 @@ class App extends React.Component {
   state = {
     products: [],
     cart: [],
-    sizesSelected: []
+    sizesSelected: [],
+    cartCost: 0
   };
+
+  roundedValue = number => Math.round(number * 100) / 100;
 
   addtoCart = event => {
     console.log(`The selection was a ${event.size} ${event.title}`);
+
     if (this.state.cart.includes(event)) {
       const index = this.state.cart.indexOf(event);
       var newCart = this.state.cart;
       newCart[index].count += 1;
-      this.setState({ cart: newCart });
+      newCart[index].currentCost = this.roundedValue(
+        newCart[index].count * newCart[index].price
+      );
+
+      this.setState({
+        cart: newCart,
+        cartCost: this.roundedValue(this.state.cartCost + newCart[index].price)
+      });
     } else {
       event.count = 1;
-      this.setState({ cart: [...this.state.cart, event] });
+      event.currentCost = this.roundedValue(event.count * event.price);
+      this.setState({
+        cart: [...this.state.cart, event],
+        cartCost: this.roundedValue(this.state.cartCost + event.price)
+      });
     }
   };
 
   removeFromCart = event => {
     this.setState({
-      cart: this.state.cart.filter(item => item.id !== event.id)
+      cart: this.state.cart.filter(item => item.id !== event.id),
+      cartCost: this.roundedValue(
+        this.state.cartCost - event.count * event.price
+      )
     });
   };
 
@@ -65,6 +83,7 @@ class App extends React.Component {
 
         <ShoppingCart
           cart={this.state.cart}
+          cartCost={this.state.cartCost}
           removeFromCart={this.removeFromCart}
         />
       </div>

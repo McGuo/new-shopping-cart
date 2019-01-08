@@ -12,6 +12,7 @@ const options = [
 
 class Categories extends React.Component {
   render() {
+    const { updateSizesSelected } = this.props;
     return (
       <Dropdown
         placeholder="Select Sizes to Filter By"
@@ -20,7 +21,7 @@ class Categories extends React.Component {
         selection
         options={options}
         style={{ margin: "10px" }}
-        onChange={(e, { value }) => this.props.updateSizesSelected(value)}
+        onChange={(e, { value }) => updateSizesSelected(value)}
       />
     );
   }
