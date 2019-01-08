@@ -12,6 +12,7 @@ class App extends React.Component {
   };
 
   addtoCart = event => {
+    console.log(`The selection was a ${event.size} ${event.title}`);
     if (this.state.cart.includes(event)) {
       const index = this.state.cart.indexOf(event);
       var newCart = this.state.cart;

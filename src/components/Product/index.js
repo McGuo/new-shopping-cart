@@ -7,7 +7,10 @@ const Product = ({ item, addtoCart }) => {
       <button
         className="ui primary button"
         key={size}
-        onClick={() => addtoCart(item)}
+        onClick={() => {
+          item.size = size;
+          addtoCart(item);
+        }}
       >
         {size}
       </button>
@@ -18,7 +21,7 @@ const Product = ({ item, addtoCart }) => {
     <div className="shopping-item item column">
       <img
         className="ui image"
-        src={require(`../static/data/products/${item.sku}_1.jpg`)}
+        src={require(`../../static/data/products/${item.sku}_1.jpg`)}
         alt={item.style}
       />
       <div className="header">{item.title}</div>

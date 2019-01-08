@@ -17,7 +17,9 @@ class ProductCard extends React.Component {
         </div>
         <img
           className="ui avatar image left floated content"
-          src={require(`../static/data/products/${this.props.item.sku}_1.jpg`)}
+          src={require(`../../static/data/products/${
+            this.props.item.sku
+          }_1.jpg`)}
           alt={this.props.item.style}
         />
 

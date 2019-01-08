@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCard/";
 
 const ShoppingCart = ({ cart, removeFromCart }) => {
   const renderedList = cart.map(item => {
