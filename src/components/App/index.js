@@ -1,8 +1,7 @@
 import React from "react";
-
-import Catalogue from "./Catalogue";
-import Categories from "./Categories";
-import ShoppingCart from "./ShoppingCart";
+import Catalogue from "../Catalogue/";
+import Categories from "../Categories/";
+import ShoppingCart from "../ShoppingCart/";
 
 class App extends React.Component {
   state = {
@@ -14,11 +13,17 @@ class App extends React.Component {
 
   roundedValue = number => Math.round(number * 100) / 100;
 
-  addtoCart = event => {
-    console.log(`The selection was a ${event.size} ${event.title}`);
+  addtoCart = (event, size) => {
+    var newItem = JSON.parse(JSON.stringify(event));
+    const target = this.state.cart.find(item => {
+      if (item.sku === newItem.sku && item.size === size) {
+        return item;
+      }
+      return undefined;
+    });
 
-    if (this.state.cart.includes(event)) {
-      const index = this.state.cart.indexOf(event);
+    if (target) {
+      const index = this.state.cart.indexOf(target);
       var newCart = this.state.cart;
       newCart[index].count += 1;
       newCart[index].currentCost = this.roundedValue(
@@ -32,18 +37,23 @@ class App extends React.Component {
         )
       });
     } else {
-      event.count = 1;
-      event.currentCost = event.price;
+      newItem.count = 1;
+      newItem.currentCost = event.price;
+      newItem.size = size;
+      newItem.uniqID = newItem.sku + newItem.size;
+
       this.setState({
-        cart: [...this.state.cart, event],
+        cart: [...this.state.cart, newItem],
         cartTotal: this.roundedValue(this.state.cartTotal + event.price)
       });
     }
   };
 
   removeFromCart = event => {
+    event.uniqID = event.sku + event.size;
+
     this.setState({
-      cart: this.state.cart.filter(item => item.id !== event.id),
+      cart: this.state.cart.filter(item => item.uniqID !== event.uniqID),
       cartTotal: this.roundedValue(
         this.state.cartTotal - event.count * event.price
       )
@@ -55,7 +65,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    import("../static/data/products.json")
+    import("../../static/data/products.json")
       .then(json => {
         this.setState({ products: json.products });
       })
@@ -78,6 +88,7 @@ class App extends React.Component {
             products={this.state.products}
             addtoCart={this.addtoCart}
             sizesSelected={this.state.sizesSelected}
+            jodieWei={this.state.cart}
           />
         </div>
 

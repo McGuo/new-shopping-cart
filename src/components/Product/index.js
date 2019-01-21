@@ -1,15 +1,14 @@
 import React from "react";
 import "./Product.css";
 
-const Product = ({ item, addtoCart }) => {
+const Product = ({ item, addtoCart, jodieWei }) => {
   const renderedButtons = item.availableSizes.map(size => {
     return (
       <button
         className="ui primary button"
         key={size}
         onClick={() => {
-          item.size = size;
-          addtoCart(item);
+          addtoCart(item, size);
         }}
       >
         {size}

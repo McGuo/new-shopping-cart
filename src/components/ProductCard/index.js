@@ -3,14 +3,14 @@ import "./ProductCard.css";
 
 class ProductCard extends React.Component {
   render() {
-    const { item } = this.props;
+    const { item, removeFromCart } = this.props;
     return (
       <div className="shopping-cart-card item">
         <div className="right floated content">
           <button
             className="ui icon button red"
             onClick={() => {
-              this.props.removeFromCart(item);
+              removeFromCart(item);
             }}
           >
             <i className="minus icon" />
@@ -25,6 +25,8 @@ class ProductCard extends React.Component {
         <div className="content">
           <div className="header">{item.title}</div>
           <p>
+            Size: {item.size}
+            <br />
             {item.count} x {item.currencyFormat}
             {item.price} = {item.currencyFormat}
             {item.currentCost}
