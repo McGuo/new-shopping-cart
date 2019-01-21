@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "./ProductCard/";
 
-const ShoppingCart = ({ cart, cartCost, removeFromCart }) => {
+const ShoppingCart = ({ cart, cartTotal, removeFromCart }) => {
   const renderedList = cart.map(item => {
     return (
       <ProductCard key={item.id} item={item} removeFromCart={removeFromCart} />
@@ -21,7 +21,7 @@ const ShoppingCart = ({ cart, cartCost, removeFromCart }) => {
             <h4>Total:</h4>
           </div>
           <div className="right floated content">
-            <p>${cartCost}</p>
+            <p>${cartTotal}</p>
           </div>
         </div>
       </div>

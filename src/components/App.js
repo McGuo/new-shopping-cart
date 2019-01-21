@@ -9,7 +9,7 @@ class App extends React.Component {
     products: [],
     cart: [],
     sizesSelected: [],
-    cartCost: 0
+    cartTotal: 0.0
   };
 
   roundedValue = number => Math.round(number * 100) / 100;
@@ -27,14 +27,16 @@ class App extends React.Component {
 
       this.setState({
         cart: newCart,
-        cartCost: this.roundedValue(this.state.cartCost + newCart[index].price)
+        cartTotal: this.roundedValue(
+          this.state.cartTotal + newCart[index].price
+        )
       });
     } else {
       event.count = 1;
-      event.currentCost = this.roundedValue(event.count * event.price);
+      event.currentCost = event.price;
       this.setState({
         cart: [...this.state.cart, event],
-        cartCost: this.roundedValue(this.state.cartCost + event.price)
+        cartTotal: this.roundedValue(this.state.cartTotal + event.price)
       });
     }
   };
@@ -42,16 +44,14 @@ class App extends React.Component {
   removeFromCart = event => {
     this.setState({
       cart: this.state.cart.filter(item => item.id !== event.id),
-      cartCost: this.roundedValue(
-        this.state.cartCost - event.count * event.price
+      cartTotal: this.roundedValue(
+        this.state.cartTotal - event.count * event.price
       )
     });
   };
 
   updateSizesSelected = event => {
-    this.setState({
-      sizesSelected: event
-    });
+    this.setState({ sizesSelected: event });
   };
 
   componentDidMount() {
@@ -83,7 +83,7 @@ class App extends React.Component {
 
         <ShoppingCart
           cart={this.state.cart}
-          cartCost={this.state.cartCost}
+          cartTotal={this.state.cartTotal}
           removeFromCart={this.removeFromCart}
         />
       </div>
