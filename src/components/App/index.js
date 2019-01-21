@@ -2,13 +2,28 @@ import React from "react";
 import Catalogue from "../Catalogue/";
 import Categories from "../Categories/";
 import ShoppingCart from "../ShoppingCart/";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAZaYS-ueJVYspHOa-4vJTm3iFn1WyNM0Y",
+  authDomain: "shopping-cart-5d4bb.firebaseapp.com"
+});
 
 class App extends React.Component {
   state = {
     products: [],
     cart: [],
     sizesSelected: [],
-    cartTotal: 0.0
+    cartTotal: 0.0,
+    isSignedIn: false
+  };
+  uiConfig = {
+    signInFlow: "popup",
+    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+    callbacks: {
+      signInSuccess: () => false
+    }
   };
 
   roundedValue = number => Math.round(number * 100) / 100;
@@ -65,6 +80,9 @@ class App extends React.Component {
   };
 
   componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.setState({ isSignedIn: !!user });
+    });
     import("../../static/data/products.json")
       .then(json => {
         this.setState({ products: json.products });
@@ -77,6 +95,23 @@ class App extends React.Component {
   render() {
     return (
       <div className="ui grid container">
+        <div className="row">
+          {this.state.isSignedIn ? (
+            <span>
+              <div>Signed In!</div>
+              <button onClick={() => firebase.auth().signOut()}>
+                Sign Out
+              </button>
+              <h1>Welcome, {firebase.auth().currentUser.displayName}</h1>
+              <img alt="profile" src={firebase.auth().currentUser.photoURL} />
+            </span>
+          ) : (
+            <StyledFirebaseAuth
+              uiConfig={this.uiConfig}
+              firebaseAuth={firebase.auth()}
+            />
+          )}
+        </div>
         <div className="row">
           <div className="twelve wide column">
             <Categories updateSizesSelected={this.updateSizesSelected} />
