@@ -8,7 +8,7 @@ class ProductCard extends React.Component {
       <div className="shopping-cart-card item">
         <div className="right floated content">
           <button
-            className="ui icon button red"
+            className="ui icon button red mini inverted"
             onClick={() => {
               removeFromCart(item);
             }}

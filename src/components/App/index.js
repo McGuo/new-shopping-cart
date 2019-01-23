@@ -19,7 +19,8 @@ class App extends React.Component {
     cart: [],
     sizesSelected: [],
     cartTotal: 0.0,
-    isSignedIn: false
+    isSignedIn: false,
+    currentUser: null
   };
   uiConfig = {
     signInFlow: "popup",
@@ -128,7 +129,7 @@ class App extends React.Component {
           </div>
         </div>
         <div className="row" />
-        <div className="twelve wide column">
+        <div className="fourteen wide column">
           <Catalogue
             products={this.state.products}
             addtoCart={this.addtoCart}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Dropdown } from "semantic-ui-react";
+import "./Categories.css";
 
 const options = [
   { key: "XS", text: "Extra Small", value: "XS" },

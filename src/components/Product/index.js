@@ -5,7 +5,7 @@ const Product = ({ item, addtoCart }) => {
   const renderedButtons = item.availableSizes.map(size => {
     return (
       <button
-        className="ui primary button"
+        className="ui primary button inverted product"
         key={size}
         onClick={() => {
           addtoCart(item, size);
@@ -17,22 +17,19 @@ const Product = ({ item, addtoCart }) => {
   });
 
   return (
-    <div className="shopping-item item column">
-      <img
-        className="ui image"
-        src={require(`../../static/data/products/${item.sku}_1.jpg`)}
-        alt={item.style}
-      />
-      <div className="header">{item.title}</div>
-      <div className="content">
-        <div className="description">
-          <p>
-            {item.description} <br />${item.price} <br />
-            <b>Available in:</b>
-          </p>
-        </div>
-        {renderedButtons}
+    <div class="ui card">
+      <div class="image">
+        <img src={require(`../../static/data/products/${item.sku}_1.jpg`)} />
       </div>
+      <div class="content">
+        <a class="header">{item.title}</a>
+        <div class="description">
+          ${item.price} <br />
+          Available in:
+          <br />
+        </div>
+      </div>
+      <div class="extra content">{renderedButtons}</div>
     </div>
   );
 };

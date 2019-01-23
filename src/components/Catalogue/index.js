@@ -10,15 +10,23 @@ const Catalogue = ({ products, addtoCart, sizesSelected }) => {
 
   const renderedList = products.map(item => {
     if (sizesSelected.length === 0) {
-      return <Product item={item} addtoCart={addtoCart} key={item.id} />;
+      return (
+        <div className="five wide column">
+          <Product item={item} addtoCart={addtoCart} key={item.id} />
+        </div>
+      );
     } else if (findOne(sizesSelected, item.availableSizes)) {
-      return <Product item={item} addtoCart={addtoCart} key={item.id} />;
+      return (
+        <div className="five wide column">
+          <Product item={item} addtoCart={addtoCart} key={item.id} />
+        </div>
+      );
     } else {
       return "";
     }
   });
 
-  return <div className="ui stackable three column grid">{renderedList}</div>;
+  return <div className="ui stackable grid container">{renderedList}</div>;
 };
 
 export default Catalogue;
