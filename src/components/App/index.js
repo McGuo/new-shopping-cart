@@ -1,9 +1,12 @@
 import React from "react";
+import firebase from "firebase";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
 import Catalogue from "../Catalogue/";
 import Categories from "../Categories/";
 import ShoppingCart from "../ShoppingCart/";
-import firebase from "firebase";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import ProfileCard from "../ProfileCard/";
+import "./App.css";
 
 firebase.initializeApp({
   apiKey: "AIzaSyAZaYS-ueJVYspHOa-4vJTm3iFn1WyNM0Y",
@@ -96,24 +99,31 @@ class App extends React.Component {
     return (
       <div className="ui grid container">
         <div className="row">
-          {this.state.isSignedIn ? (
-            <span>
-              <div>Signed In!</div>
-              <button onClick={() => firebase.auth().signOut()}>
-                Sign Out
-              </button>
-              <h1>Welcome, {firebase.auth().currentUser.displayName}</h1>
-              <img alt="profile" src={firebase.auth().currentUser.photoURL} />
-            </span>
-          ) : (
-            <StyledFirebaseAuth
-              uiConfig={this.uiConfig}
-              firebaseAuth={firebase.auth()}
-            />
-          )}
+          <div className="sixteen wide column" />
         </div>
         <div className="row">
-          <div className="twelve wide column">
+          <div className="four wide column ">
+            {this.state.isSignedIn ? (
+              <div className="profile">
+                <ProfileCard
+                  url={firebase.auth().currentUser.photoURL}
+                  userName={firebase.auth().currentUser.displayName}
+                />
+                <button
+                  class=" ui inverted red button mini right floated"
+                  onClick={() => firebase.auth().signOut()}
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <StyledFirebaseAuth
+                uiConfig={this.uiConfig}
+                firebaseAuth={firebase.auth()}
+              />
+            )}
+          </div>
+          <div className="ten wide column">
             <Categories updateSizesSelected={this.updateSizesSelected} />
           </div>
         </div>
@@ -123,7 +133,6 @@ class App extends React.Component {
             products={this.state.products}
             addtoCart={this.addtoCart}
             sizesSelected={this.state.sizesSelected}
-            jodieWei={this.state.cart}
           />
         </div>
 

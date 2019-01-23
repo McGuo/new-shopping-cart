@@ -1,7 +1,7 @@
 import React from "react";
 import "./Product.css";
 
-const Product = ({ item, addtoCart, jodieWei }) => {
+const Product = ({ item, addtoCart }) => {
   const renderedButtons = item.availableSizes.map(size => {
     return (
       <button
