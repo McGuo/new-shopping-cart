@@ -111,7 +111,7 @@ class App extends React.Component {
                   userName={firebase.auth().currentUser.displayName}
                 />
                 <button
-                  class=" ui inverted red button mini right floated"
+                  class=" ui inverted red button mini log-out"
                   onClick={() => firebase.auth().signOut()}
                 >
                   Sign out
@@ -124,7 +124,7 @@ class App extends React.Component {
               />
             )}
           </div>
-          <div className="ten wide column">
+          <div className="nine wide column">
             <Categories updateSizesSelected={this.updateSizesSelected} />
           </div>
         </div>

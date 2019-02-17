@@ -1,4 +1,6 @@
 import React from "react";
+import { Sidebar } from "semantic-ui-react";
+
 import ProductCard from "../ProductCard/";
 
 const ShoppingCart = ({ cart, cartTotal, removeFromCart }) => {
@@ -13,7 +15,7 @@ const ShoppingCart = ({ cart, cartTotal, removeFromCart }) => {
   });
 
   return (
-    <div className="ui right visible  vertical sidebar labeled icon menu">
+    <div className="ui right visible vertical sidebar labeled icon menu">
       <div className="item">
         <i className="shopping cart icon" />
         <div className="header"> Current Shopping Cart</div>

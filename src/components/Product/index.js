@@ -19,10 +19,13 @@ const Product = ({ item, addtoCart }) => {
   return (
     <div class="ui card">
       <div class="image">
-        <img src={require(`../../static/data/products/${item.sku}_1.jpg`)} />
+        <img
+          src={require(`../../static/data/products/${item.sku}_1.jpg`)}
+          alt={item.title}
+        />
       </div>
       <div class="content">
-        <a class="header">{item.title}</a>
+        <h3 class="header">{item.title}</h3>
         <div class="description">
           ${item.price} <br />
           Available in:
